@@ -1,325 +1,329 @@
 #define _CRT_SECURE_NO_WARNINGS 1
-#include<string.h>
-#include<stdio.h>
-#include<Windows.h>
-#include<stdlib.h>
 
-////////////////////////////////////求某个数的阶乘////////////////////////////////////////
+#include<stdio.h>
+
+//创建一个结构体类型-struct Stu
+//struct Stu
+//{
+//	//成员变量
+//	char name[20];
+//	int age;
+//	char id[20];
+//};
 //int main()
 //{
-//	int n = 0, a = 1;
-//	scanf("%d", &n);
-//	printf("%d的阶乘是：", n);
-//	for (; n > 0; n--)
-//	{
-//		a = a*n;
-//	}
-//printf("%d", a);
-//}
-////////////////////////////////////求1!+2!+...+10! //////////////////////////////
-//int main()
-//{
-//	int i = 0, j = 0;
-//	long int a = 1;
-//	long int sum = 0;
-//	for ( i = 1; i <= 3; i++)
-//	{
-//		a = 1;
-//		for ( j = i; j > 0; j--)
-//		{
-//			a = a * j;
-//		}
-//		sum = sum + a;
-//	}
-//	printf("%d\n", sum);
+//	//使用struct Stu这个类型创建了一个学生对象s1，并初始化
+//	struct Stu s1 = { "张三",20,"20210601" };
+//
+//	printf("%s\n", s1.name); //操作符“.”的用法：结构变量.成员名
+//	printf("%d\n", s1.age);
+//	printf("%s\n", s1.id);
+//	
+//	struct Stu* ps = &s1;
+//	printf("%s\n", ps->name); //操作符“->”的用法：结构体指针->成员名
+//	printf("%d\n", ps->age);
+//	printf("%s\n", ps->id);
+//	
 //	return 0;
 //}
-////////////////////////////////////求1!+2!+...+10! 简化版//////////////////////
+//整型提升
 //int main()
+//{
+//	char c = 1;
+//	printf("%u\n", sizeof(c));
+//	printf("%u\n", sizeof(+c));
+//	printf("%u\n", sizeof(!c));
+//	return 0;
+//}//int main()//{
+//	int a = 10;//	int b = 20;//	int c = b + a * 3;//}//代码2//int main()//{//	int a = 0;//	int c = 1;//	a = c + c;//	printf("%d\n", a);//}//代码3-非法表达式
+//int main()
+//{
+//	int i = 10;
+//	i = i-- - --i * (i = -3) * i++ + ++i;
+//	printf("i = %d\n", i);
+//	return 0;
+//}////代码4//int fun()
+//{
+//	static int count = 1;
+//	return ++count;
+//}
+//int main()
+//{
+//	int answer;
+//	answer = fun() - fun() * fun();
+//	printf("%d\n", answer);//输出多少？
+//	return 0;
+//}
+//int main()
+//{
+//	int i = 1;
+//	int a = 0;
+//	a = (++i) + (++i) + (++i);
+//	printf("%d\n", i);
+//	printf("%d\n", a);
+//	return 0;
+//}
+
+//int main()
+//{
+//	int a = 10;
+//	int *p = &a;//指针变量
+//	return 0;
+//}
+
+//int main()
+//{
+//	//printf("%d\n", sizeof(char*)); //4
+//	//printf("%d\n", sizeof(short*)); //4
+//	//printf("%d\n", sizeof(int *)); //4
+//	//printf("%d\n", sizeof(double*)); //4
+//	int a = 0x11223344;
+//	int* pa = &a;
+//	//char *pc = &a;
+//	//printf("%p\n", pa);
+//	//printf("%p\n", pc);
+//	return 0;
+//}
+
+//int main()
+//{
+//	int a = 0x12345678;
+//	int *pa = &a;
+//	char *pc = &a;
+//	//指针的类型决定了：指针走一步走多远（步长）
+//	printf("%p\n", pa);
+//	printf("%p\n", pa + 1);//加4个字节（一个整型）
+//	printf("%p\n", pc);
+//	printf("%p\n", pc + 1);//加1个字节（一个字符）
+//
+//	return 0;
+//}
+
+//int main()
+//{
+//	int arr1[10] = { 0 };
+//
+//	int *p = arr1;
+//	for (int i = 0; i < 10; i++)
+//	{
+//		*(p + i) = 1;
+//	}
+//
+//	return 0;
+//}
+
+//int *test()
+//{
+//	int a = 10; 
+//	return &a;
+//}
+//int main()
+//{
+//	int *p = test(); //指针指向的空间释放，变成野指针
+//	*p = 20;
+//	return 0;
+//}
+
+//int main()
+//{
+//	int a = 10;
+//	int *pa = &a; //初始化
+//	int *p = NULL; //NULL -用来初始化指针的，给指针赋值
+//	return 0;
+//}
+
+//int my_strlen(char *str)
+//{
+//	char *end = str;
+//	while (*end!='\0')
+//	{
+//		end++; //找到数组最后一个元素的地址
+//	}
+//	return end - str; //元素个数=最后一个元素的地址-首元素的地址
+//}
+//int main()
+//{
+//	char arr[] = "bit";
+//	int len = my_strlen(arr);
+//	printf("len = %d\n", len);
+//	return 0;
+//}
+
+//int main()
+//{
+//	int arr[10] = { 0 };
+//	int* p = arr;
+//	for (int i = 0; i < 10; i++)
+//	{
+//		printf("%p ========= %p\n", p + i, &arr[i]); //打印的地址是一样的
+//	}
+//	return 0;
+//}
+
+//int main()
+//{
+//	int a = 10;
+//	int* pa = &a;
+//	int** ppa = &pa; //二级指针
+//	return 0;
+//}
+
+//int main()
+//{
+//	int a = 10;
+//	int b = 20;
+//	int c = 30;
+//	//int* pa = &a;
+//	//int* pb = &b;
+//	//int* pc = &c;
+//	int* arr[3] = { &a,&b,&c }; //数组指针
+//	for (int i = 0; i < 3; i++)
+//	{
+//		printf("%d =======> ", *(arr[i]));
+//		printf("%p \n", arr[i]);
+//	}
+//	return 0;
+//}
+/////////////////////////////////////////////  定义函数 数组传参  ////////////////////////////////////////////////
+//void Init(int arr[], int sz)
 //{
 //	int i = 0;
-//	long int a = 1;
-//	long int sum = 0;
-//	for ( i = 1; i <= 10; i++)
+//	for (i = 0; i < sz; i++)
 //	{
-//		a = a * i;
-//		sum = sum + a;
+//		arr[i] = 0;
 //	}
-//	printf("%d\n", sum);
-//	return 0;
 //}
-///////////////////////////////////逐个对比法 找数组中的某个元素//////////////////////////////
+//void print(int arr[], int sz)
+//{
+//	int i = 0;
+//	for (i = 0; i < sz; i++)
+//	{
+//		printf("%d ", arr[i]);
+//	}
+//	printf("\n");
+//}
+//void Reverse(int arr[], int sz)
+//{
+//	int left = 0;
+//	int right = sz - 1;
+//	while (left<right)
+//	{
+//		int tmp = arr[left];
+//		arr[left] = arr[right];
+//		arr[right] = tmp;
+//		left++;
+//		right--;
+//	}
+//}
 //int main()
 //{
 //	int arr[] = { 1,2,3,4,5,6,7,8,9,10 };
-//	int k = 7;
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	//Init(arr,sz); //把数组初始化为0；
+//	print(arr, sz); 
+//	Reverse(arr,sz); //把数组的元素逆序排序
+//	print(arr, sz);
+//	return 0;
+//}
+
+//void Swap(int arr1[], int arr2[], int sz)
+//{
 //	int i = 0;
-//	int sz = sizeof(arr) / sizeof(arr[0]);           //计算数组的元素个数；
 //	for (i = 0; i < sz; i++)
 //	{
-//		if (k == arr[i])
-//		{
-//			printf("找到了，下标是：%d\n", i);
-//			break;
-//		}
+//		int tmp = arr1[i];
+//		arr1[i] = arr2[i];
+//		arr2[i] = tmp;
 //	}
-//	if (i==sz)
-//		printf("找不到\n");
-//	return 0;
 //}
-///////////////////////////////////////二分法 找数组中某个元素////////////////////////////////////
-//int main()
+//void print(int arr[], int sz)
 //{
-//	int arr[] = {1,2,3,4,5,6,7,8,9,10 };
-//	int k = 0;
-//	scanf("%d", &k);
-//	int sz = sizeof(arr) / sizeof(arr[0]);  //计算数组的元素个数；
-//	int left = 0;      //左下标
-//	int right = sz-1;     //右下表
-//	while (left <= right) //只能在左下标<=右下标时进入循环；
-//	{
-//		int mid = (left + right) / 2; //计算中间元素的下标；
-//		if (arr[mid] > k)
-//		{
-//			right = mid - 1;
-//		}
-//		else if (arr[mid] < k)
-//		{
-//			left = mid + 1;
-//		}
-//		else
-//		{
-//			printf("找到了，下标是：%d\n", mid);
-//			break;
-//		}
-//	}
-//	if (left>right)
-//	{
-//		printf("找不到\n");
-//	}
-//	return 0;
-//}
-////////////////////////////////////////////让一串字符从两边往中间出现//////////////////////////
-//int main()
-//{
-//	char arr1[] = "welcome to Quanta!!!!!!";
-//	char arr2[] = "***********************";
-//	int left = 0;
-//	int right = strlen(arr1)-1;
-//	while (left <= right)
-//	{
-//		printf("%s\n", arr2);
-//		arr2[left] = arr1[left];
-//		arr2[right] = arr1[right];
-//		left++;
-//		right--;
-//		Sleep(1000);
-//		system("cls");
-//	}
-//	printf("%s\n", arr2);
-//	return 0;
-/////////////////////////////////////////////////密码验证///////////////////////////////////////////
-//int main()
-//{
-//	char password[20] = { 0 };
 //	int i = 0;
-//	for (i = 0; i < 3; i++)
+//	for (i = 0; i < sz; i++)
 //	{
-//		printf("请输入密码：");
-//		scanf("%s", password);
-//		if (strcmp(password, "123456") == 0)
-//		{
-//			printf("登录成功\n");
-//			break;
-//		}
-//		else
-//		{
-//			printf("密码错误\n");
-//		}
+//		printf("%d ", arr[i]);
 //	}
-//	if (i == 3)
-//	{
-//		printf("密码输入错误三次，请联系管理员");
-//	}
-//	return 0;
+//	printf("\n");
 //}
-////////////////////////////////////////////////////把三个数从大到小排列////////////////////////////////
 //int main()
 //{
-//	int a = 0, b = 0, c = 0;
-//	scanf("%d%d%d", &a, &b, &c);
-//	if (a<b)
-//	{
-//		int tmp = a;
-//		a = b;
-//		b = tmp;
-//	}
-//	if (a < c)
-//	{
-//		int tmp = a;
-//		a = c;
-//		c = tmp;
-//	}
-//	if (b<c)
-//	{
-//		int tmp = b;
-//		b = c;
-//		c = tmp;
-//	}
-//	printf("%d>%d>%d\n", a, b, c);
+//	int arr1[10] = { 1,2,3,4,5,6,7,8,9,10 };
+//	int arr2[10] = { 10,9,8,7,6,5,4,3,2,1 };
+//	int sz = sizeof(arr1) / sizeof(arr1[0]);
+//	Swap(arr1,arr2,sz);
+//	printf("arr1 = ");
+//	print(arr1, sz);
+//	printf("arr2 = ");
+//	print(arr2, sz);
 //	return 0;
 //}
-///////////////////////////////////////////求两个数的最大公约数/////////////////////////////////////////////////////
-//int main()
-//{
-//	int a = 0, b = 0;
-//	scanf("%d%d", &a, &b);
-//	int n = 0;
-//	while (a%b)
-//	{
-//		n = a%b;
-//		a = b;
-//		b = n;
-//	}
-//	printf("这两个数的最大公约数是：%d\n", b);
-//	return 0;
-//}
-///////////////////////////////////////////求100-200之间的素数////////////////////////////////////////////////
-#include<math.h>
-//int main()
+////////////////////////////////////////////////  计算a在计算机中的补码的1的个数  /////////////////////////////////////////////
+//int count_bit_one(int n)
 //{
 //	int count = 0;
-//	int i = 0;
-//	for (i = 101; i <= 200; i+=2) 
+//	for (int i = 0; i < 32; i++)
 //	{
-//		int j = 0;
-//		for ( j = 2; j <= sqrt(i); j++)  //sqrt -是一个数学函数，表示对i开平方；
-                                         //任何一个数，如果他不是素数，那么它一定能被一个小于等于它自身开方的数整除；
-//		{
-//			if (i%j == 0)
-//				break;
-//		}
-//		if (j > sqrt(i))
-//		{
-//			printf("%d ", i);
+//		if (((n >> i) & 1) == 1)
 //			count++;
-//		}
 //	}
-//	printf("\ncount=%d\n", count);
-//	return 0;
+//	return count;
 //}
-///////////////////////////////////////////////////输出100以内9的个数///////////////////////////////////////////////////////
-//int main()
+//int count_bit_one(int n)
 //{
 //	int count = 0;
-//	for (int i = 0; i <= 100; i++)
+//	while (n)
 //	{
-//		if (i % 10 == 9)
-//		{
-//			count++;
-//			printf("%d ", i);
-//		}
-//		if (i / 10 == 9)
-//		{
-//			count++;
-//			printf("%d ", i);
-//		}
+//		n = n & (n - 1);
+//		count++;
 //	}
-//	printf("\ncount=%d", count);
+//	return count;
+//}
+//int main()
+//{
+//	int a = 0;
+//	scanf("%d", &a);
+//	//求a的二进制补码表示中有几个1
+//	int count = count_bit_one(a);
+//	printf("count = %d\n", count);
 //	return 0;
 //}
-////////////////////////////////////////////////////打印乘法表//////////////////////////////////////////////////
-//int main()
+//////////////////////////////////////////////  乘法表  ////////////////////////////////////////////////////////////
+//void print_table(int n)
 //{
 //	int i = 0;
 //	int j = 0;
-//	for ( i = 1; i <= 9; i++)
+//	for (i = 1; i <= n; i++)
 //	{
 //		for (j = 1; j <= i; j++)
 //		{
-//			printf("%d*%d=%-2d ", i, j, i*j); //%-2d中，-2表示两位数左对齐；2表示两位数右对其；不足两位用空格补齐。
+//			printf("%2d*%d=%-3d ", i, j, i*j);
 //		}
 //		printf("\n");
 //	}
+//}
+//int main()
+//{
+//	int n = 0;
+//	scanf("%d", &n);
+//	print_table(n);
 //	return 0;
 //}
-//////////////////////////////////////////////猜数字游戏///////////////////////////////////////////////////////////////////////////////////
-#include<time.h>
-void menu()
+//////////////////////////////////////////////  递归的方式求n的k次方  /////////////////////////////////////////////////
+double Pow(int n, int k)
 {
-	printf("********************************************************\n");
-	printf("****************        数字游戏      ******************\n");
-	printf("********************************************************\n");
-	printf("***************   1. play    0. exit   *****************\n");
-	printf("********************************************************\n");
-}
-void game()
-{
-	//第一步，生成一个随机数
-	int	ret = 0;
-	int guess = 0; //接收玩家猜的数
-	//拿时间戳来设置随机数的生成起始点
-	//time_t time(time_t *timer)
-	//time_t
-	ret = rand() % 100 + 1; //生成1-100之间的随机数
-	//printf("%d\n",ret);
-	//第二步，猜数字
-	while (1)
-	{
-		printf("请猜数字>：");
-		scanf("%d", &guess);
-		if (guess>ret)
-		{
-			printf("猜大了\n");
-		}
-		else if (guess < ret)
-		{
-			printf("猜小了\n");
-		}
-		else
-		{
-			printf("恭喜你，猜对了\n");
-			break;
-		}
-	}
+	if (k < 0)
+		return (1.0 / (Pow(n, -k)));
+	else if (k == 0)
+		return 1;
+	else
+		return n * Pow(n, k - 1);
 }
 int main()
 {
-	int input = 0;
-	srand((unsigned int)time(NULL));
-	do
-	{
-		menu();
-		printf("请选择>：");
-		scanf("%d", &input);
-		switch (input)
-		{
-		case 1:
-			game(); //猜数字游戏
-			break;
-		case 0:
-			printf("退出游戏\n");
-			break;
-		default:
-			printf("选择无效，请重新选择\n");
-			break;
-		}
-	} while (input);
+	int n = 0;
+	int k = 0;
+	scanf("%d%d", &n, &k);
+	double ret = Pow(n, k);
+	printf("%d的%d次方 = %lf\n", n, k, ret);
 	return 0;
 }
-/////////////////////////////////////////////  关机指令  //////////////////////////////////////////////////////
-//int main()
-//{
-//	char input[20] = { 0 };
-//	system("shutdown -s -t 60"); //system() -用于执行系统命令
-// again:                          	//shutdown -s -t 60  表示系统在60s后关机
-//	printf("请注意，你的电脑将在60s内关机；请输入\"我是猪\"取消关机。\n请输入>：");
-//	scanf("%s", &input);
-//	if (strcmp(input, "我是猪") == 0)
-//		system("shutdown -a");
-//	else
-//	{
-//		goto again;
-//	}
-//	return 0;
-//}
